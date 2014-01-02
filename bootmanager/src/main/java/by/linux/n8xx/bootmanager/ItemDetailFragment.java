@@ -1,12 +1,17 @@
 package by.linux.n8xx.bootmanager;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+
+import java.io.File;
+import java.io.FilenameFilter;
 
 /**
  * A fragment representing a single Item detail screen.
@@ -53,9 +58,25 @@ public class ItemDetailFragment extends Fragment {
 
         // Show the content
         if (id != null) {
-            String[] items = new String[] { "Ubuntu.img", "Recovery.img" };
-            ArrayAdapter adapter = new ArrayAdapter<String>(rootView.getContext(), android.R.layout.simple_list_item_1, items);
-            ((ListView) rootView.findViewById(R.id.item_detail)).setAdapter(adapter);
+            SharedPreferences prefs =
+                    PreferenceManager.getDefaultSharedPreferences(rootView.getContext());
+            File dir = new File(prefs.getString("images_path", "/mnt/extSdCard"));
+            FilenameFilter filter = new FilenameFilter() {
+                @Override
+                public boolean accept(File file, String s) {
+                    String name = file.getName().toLowerCase();
+                    return name.startsWith(id) && name.endsWith(".img");
+                }
+            };
+            File[] files = dir.listFiles(filter);
+            if (files != null) {
+                String[] images = new String[files.length];
+                for (int i = 0; i < images.length; i++) { images[i] = files[i].getName(); }
+
+                ArrayAdapter adapter = new ArrayAdapter<String>(
+                        rootView.getContext(), android.R.layout.simple_list_item_1, images);
+                ((ListView) rootView.findViewById(R.id.item_detail)).setAdapter(adapter);
+            }
         }
 
         return rootView;

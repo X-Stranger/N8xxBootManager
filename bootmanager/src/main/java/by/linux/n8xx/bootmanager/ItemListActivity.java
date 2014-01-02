@@ -71,7 +71,7 @@ public class ItemListActivity extends FragmentActivity
             Bundle arguments = new Bundle();
             arguments.putString(ItemDetailFragment.ARG_ITEM_ID, id);
             Fragment fragment;
-            if("3".equals(id)) {
+            if("settings".equals(id)) {
                 fragment = new PrefsFragment();
             } else {
                 fragment = new ItemDetailFragment();
