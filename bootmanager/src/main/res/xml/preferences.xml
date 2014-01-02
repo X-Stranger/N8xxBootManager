@@ -1,0 +1,27 @@
+<PreferenceScreen
+        xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <PreferenceCategory
+            android:title="@string/options">
+
+        <by.linux.n8xx.bootmanager.EditTextPreference
+            android:key="boot_partition"
+            android:title="@string/title_normal_boot_partition"
+            android:summary=""
+            android:dialogTitle="@string/dialog_title_normal_boot_partition"/>
+
+        <by.linux.n8xx.bootmanager.EditTextPreference
+            android:key="recovery_partition"
+            android:title="@string/title_recovery_boot_partition"
+            android:summary=""
+            android:dialogTitle="@string/dialog_title_recovery_boot_partition"/>
+
+        <by.linux.n8xx.bootmanager.EditTextPreference
+            android:key="images_path"
+            android:title="@string/title_images_path"
+            android:summary=""
+            android:dialogTitle="@string/dialog_title_images_path"/>
+
+    </PreferenceCategory>
+
+</PreferenceScreen>
