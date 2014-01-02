@@ -7,19 +7,19 @@
         <by.linux.n8xx.bootmanager.EditTextPreference
             android:key="boot_partition"
             android:title="@string/title_normal_boot_partition"
-            android:summary=""
+            android:summary="@string/summary_normal_boot_partition"
             android:dialogTitle="@string/dialog_title_normal_boot_partition"/>
 
         <by.linux.n8xx.bootmanager.EditTextPreference
             android:key="recovery_partition"
             android:title="@string/title_recovery_boot_partition"
-            android:summary=""
+            android:summary="@string/summary_recovery_boot_partition"
             android:dialogTitle="@string/dialog_title_recovery_boot_partition"/>
 
         <by.linux.n8xx.bootmanager.EditTextPreference
             android:key="images_path"
             android:title="@string/title_images_path"
-            android:summary=""
+            android:summary="@string/summary_images_path"
             android:dialogTitle="@string/dialog_title_images_path"/>
 
     </PreferenceCategory>

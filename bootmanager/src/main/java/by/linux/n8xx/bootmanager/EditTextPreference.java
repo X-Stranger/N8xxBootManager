@@ -18,6 +18,10 @@ public class EditTextPreference extends android.preference.EditTextPreference {
 
     @Override
     public CharSequence getSummary() {
-        return this.getText();
+        if ("".equals(this.getText()) || (this.getText() == null)) {
+            return super.getSummary();
+        } else {
+            return this.getText();
+        }
     }
 }

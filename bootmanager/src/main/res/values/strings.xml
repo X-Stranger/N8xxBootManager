@@ -11,12 +11,15 @@
     <string name="options">Options</string>
 
     <string name="title_normal_boot_partition">Normal boot partition</string>
+    <string name="summary_normal_boot_partition">/dev/block/mmcblk0p5</string>
     <string name="dialog_title_normal_boot_partition">Please type the normal boot partition path:</string>
 
     <string name="title_recovery_boot_partition">Recovery boot partition</string>
+    <string name="summary_recovery_boot_partition">/dev/block/mmcblk0p6</string>
     <string name="dialog_title_recovery_boot_partition">Please type the recovery boot partition path:</string>
 
     <string name="title_images_path">Boot partition images folder</string>
+    <string name="summary_images_path">/mnt/extSdCard</string>
     <string name="dialog_title_images_path">Please type the path to images folder:</string>
 
     <!--  Strings for possible PreferenceActivity Back/Next buttons -->
