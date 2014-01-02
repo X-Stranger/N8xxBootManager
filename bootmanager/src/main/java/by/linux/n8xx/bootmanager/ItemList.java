@@ -5,9 +5,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import by.linux.n8xx.bootmanager.ItemListActivity;
-import by.linux.n8xx.bootmanager.R;
-
 /**
  * Helper class for content for user interfaces.
  * <p>

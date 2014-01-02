@@ -22,9 +22,9 @@ public class ItemDetailFragment extends Fragment {
     public static final String ARG_ITEM_ID = "item_id";
 
     /**
-     * The dummy content this fragment is presenting.
+     * The content id this fragment is presenting.
      */
-    private ItemList.Item mItem;
+    private String id;
 
     /**
      * Mandatory empty constructor for the fragment manager to instantiate the
@@ -38,10 +38,11 @@ public class ItemDetailFragment extends Fragment {
         super.onCreate(savedInstanceState);
 
         if (getArguments().containsKey(ARG_ITEM_ID)) {
-            // Load the dummy content specified by the fragment
+            // Load the content specified by the fragment
             // arguments. In a real-world scenario, use a Loader
             // to load content from a content provider.
-            mItem = ItemList.ITEM_MAP.get(getArguments().getString(ARG_ITEM_ID));
+            ItemList.Item item = ItemList.ITEM_MAP.get(getArguments().getString(ARG_ITEM_ID));
+            id = item != null ? item.id : null;
         }
     }
 
@@ -50,9 +51,9 @@ public class ItemDetailFragment extends Fragment {
             Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_item_detail, container, false);
 
-        // Show the dummy content as text in a TextView.
-        if (mItem != null) {
-            String[] items = new String[] { mItem.content, "test" };
+        // Show the content
+        if (id != null) {
+            String[] items = new String[] { "Ubuntu.img", "Recovery.img" };
             ArrayAdapter adapter = new ArrayAdapter<String>(rootView.getContext(), android.R.layout.simple_list_item_1, items);
             ((ListView) rootView.findViewById(R.id.item_detail)).setAdapter(adapter);
         }
