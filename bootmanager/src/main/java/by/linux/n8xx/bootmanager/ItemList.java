@@ -1,6 +1,4 @@
-package by.linux.n8xx.bootmanager.items;
-
-import android.content.res.Resources;
+package by.linux.n8xx.bootmanager;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -14,7 +12,7 @@ import by.linux.n8xx.bootmanager.R;
  * Helper class for content for user interfaces.
  * <p>
  */
-public class Content {
+public class ItemList {
 
     /**
      * An array of UI list items.

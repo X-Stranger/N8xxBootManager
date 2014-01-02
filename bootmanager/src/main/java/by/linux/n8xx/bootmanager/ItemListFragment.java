@@ -7,8 +7,6 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
-import by.linux.n8xx.bootmanager.items.Content;
-
 /**
  * A list fragment representing a list of Items. This fragment
  * also supports tablet devices by allowing list items to be given an
@@ -71,11 +69,11 @@ public class ItemListFragment extends ListFragment {
         super.onCreate(savedInstanceState);
 
         // TODO: replace with a real list adapter.
-        setListAdapter(new ArrayAdapter<Content.Item>(
+        setListAdapter(new ArrayAdapter<ItemList.Item>(
                 getActivity(),
                 android.R.layout.simple_list_item_activated_1,
                 android.R.id.text1,
-                Content.ITEMS));
+                ItemList.ITEMS));
     }
 
     @Override
@@ -115,7 +113,7 @@ public class ItemListFragment extends ListFragment {
 
         // Notify the active callbacks interface (the activity, if the
         // fragment is attached to one) that an item has been selected.
-        mCallbacks.onItemSelected(Content.ITEMS.get(position).id);
+        mCallbacks.onItemSelected(ItemList.ITEMS.get(position).id);
     }
 
     @Override
