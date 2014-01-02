@@ -55,6 +55,7 @@ public class ItemDetailFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_item_detail, container, false);
+        String[] images = new String[] {};
 
         // Show the content
         if (id != null) {
@@ -70,15 +71,19 @@ public class ItemDetailFragment extends Fragment {
             };
             File[] files = dir.listFiles(filter);
             if (files != null) {
-                String[] images = new String[files.length];
+                images = new String[files.length];
                 for (int i = 0; i < images.length; i++) { images[i] = files[i].getName(); }
-
-                ArrayAdapter adapter = new ArrayAdapter<String>(
-                        rootView.getContext(), android.R.layout.simple_list_item_1, images);
-                ((ListView) rootView.findViewById(R.id.item_detail)).setAdapter(adapter);
             }
         }
 
+        ArrayAdapter adapter = new ArrayAdapter<String>(
+                rootView.getContext(), android.R.layout.simple_list_item_1, images);
+        ((ListView) rootView.findViewById(R.id.item_detail))
+                .setEmptyView(rootView.findViewById(R.id.item_detail_empty));
+        ((ListView) rootView.findViewById(R.id.item_detail)).setAdapter(adapter);
+// TODO: fix empty view when no images found
+// TODO: check what happens when items are there
+// TODO: how to get root permissions and run dd (check if command is available first?)
         return rootView;
     }
 }
