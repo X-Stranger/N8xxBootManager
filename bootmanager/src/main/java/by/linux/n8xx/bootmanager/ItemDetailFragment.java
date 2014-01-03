@@ -90,8 +90,8 @@ public class ItemDetailFragment extends Fragment {
         ArrayAdapter adapter = new ArrayAdapter<String>(
                 rootView.getContext(), android.R.layout.simple_list_item_1, images);
         ((ListView) rootView.findViewById(R.id.item_detail)).setAdapter(adapter);
-// TODO: check what happens when items are there
-// TODO: how to get root permissions and run dd (check if command is available first?)
+        ((ListView) rootView.findViewById(R.id.item_detail)).setOnItemSelectedListener(new ItemSelectedListener());
+
         return rootView;
     }
 }
