@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import java.io.File;
 import java.io.FilenameFilter;
@@ -55,33 +56,40 @@ public class ItemDetailFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_item_detail, container, false);
-        String[] images = new String[] {};
+        String[] images = new String[] { "No boot images found" };
+        rootView.findViewById(R.id.item_detail).setEnabled(false);
 
         // Show the content
         if (id != null) {
             SharedPreferences prefs =
                     PreferenceManager.getDefaultSharedPreferences(rootView.getContext());
+            Toast.makeText(rootView.getContext(), "Looking for " + id + "*.img files at "
+                    + prefs.getString("images_path", "/mnt/extSdCard"), Toast.LENGTH_SHORT).show();
+
             File dir = new File(prefs.getString("images_path", "/mnt/extSdCard"));
-            FilenameFilter filter = new FilenameFilter() {
-                @Override
-                public boolean accept(File file, String s) {
-                    String name = file.getName().toLowerCase();
-                    return name.startsWith(id) && name.endsWith(".img");
+            if (dir.exists() && dir.isDirectory()) {
+                FilenameFilter filter = new FilenameFilter() {
+                    @Override
+                    public boolean accept(File dir, String name) {
+                        String lower = name.toLowerCase();
+                        return (lower.startsWith(id) && lower.endsWith(".img"));
+                    }
+                };
+                File[] files = dir.listFiles(filter);
+                if (files != null) {
+                    images = new String[files.length];
+                    for (int i = 0; i < images.length; i++) { images[i] = files[i].getName(); }
+                    rootView.findViewById(R.id.item_detail).setEnabled(true);
                 }
-            };
-            File[] files = dir.listFiles(filter);
-            if (files != null) {
-                images = new String[files.length];
-                for (int i = 0; i < images.length; i++) { images[i] = files[i].getName(); }
+            } else {
+                Toast.makeText(rootView.getContext(), "The path " + dir.getAbsolutePath()
+                        + " does not exist", Toast.LENGTH_SHORT).show();
             }
         }
 
         ArrayAdapter adapter = new ArrayAdapter<String>(
                 rootView.getContext(), android.R.layout.simple_list_item_1, images);
-        ((ListView) rootView.findViewById(R.id.item_detail))
-                .setEmptyView(rootView.findViewById(R.id.item_detail_empty));
         ((ListView) rootView.findViewById(R.id.item_detail)).setAdapter(adapter);
-// TODO: fix empty view when no images found
 // TODO: check what happens when items are there
 // TODO: how to get root permissions and run dd (check if command is available first?)
         return rootView;
