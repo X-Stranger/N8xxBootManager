@@ -76,7 +76,7 @@ public class ItemDetailFragment extends Fragment {
                     }
                 };
                 File[] files = dir.listFiles(filter);
-                if (files != null) {
+                if ((files != null) && (files.length > 0)) {
                     images = new String[files.length];
                     for (int i = 0; i < images.length; i++) { images[i] = files[i].getName(); }
                     rootView.findViewById(R.id.item_detail).setEnabled(true);
