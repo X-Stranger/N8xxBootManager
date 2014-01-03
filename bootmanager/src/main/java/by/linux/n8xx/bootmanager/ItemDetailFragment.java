@@ -7,6 +7,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -90,7 +91,17 @@ public class ItemDetailFragment extends Fragment {
         ArrayAdapter adapter = new ArrayAdapter<String>(
                 rootView.getContext(), android.R.layout.simple_list_item_1, images);
         ((ListView) rootView.findViewById(R.id.item_detail)).setAdapter(adapter);
-        ((ListView) rootView.findViewById(R.id.item_detail)).setOnItemSelectedListener(new ItemSelectedListener());
+        ((ListView) rootView.findViewById(R.id.item_detail)).setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int position, long id) {
+                System.out.println(adapter.getItem(position));
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+                // do nothing
+            }
+        });
 
         return rootView;
     }
