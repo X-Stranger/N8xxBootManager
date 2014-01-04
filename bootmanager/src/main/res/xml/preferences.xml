@@ -25,6 +25,9 @@
             android:dialogTitle="@string/dialog_title_images_path"
             android:defaultValue="@string/summary_images_path"/>
 
+        <Preference
+            android:layout="@layout/check_root_button"/>
+
     </PreferenceCategory>
 
 </PreferenceScreen>
