@@ -26,7 +26,7 @@ public class CheckRootButton extends Button {
 
                     alert.setPositiveButton("Got it", new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int whichButton) {
-                            // do nothing
+                            dialog.dismiss();
                         }
                     });
 

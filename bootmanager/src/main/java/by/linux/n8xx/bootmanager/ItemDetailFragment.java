@@ -7,7 +7,6 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -88,15 +87,10 @@ public class ItemDetailFragment extends Fragment {
             }
         }
 
-        final ArrayAdapter<String> adapter = new ArrayAdapter<String>(
+        ArrayAdapter adapter = new ArrayAdapter<String>(
                 rootView.getContext(), android.R.layout.simple_list_item_1, images);
         ((ListView) rootView.findViewById(R.id.item_detail)).setAdapter(adapter);
-        ((ListView) rootView.findViewById(R.id.item_detail)).setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
-                Toast.makeText(view.getContext(), adapter.getItem(position), Toast.LENGTH_SHORT).show();
-            }
-        });
+        ((ListView) rootView.findViewById(R.id.item_detail)).setOnItemClickListener(new ClickListener(id));
 
         return rootView;
     }

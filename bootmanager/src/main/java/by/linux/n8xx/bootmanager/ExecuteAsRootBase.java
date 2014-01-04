@@ -6,6 +6,7 @@ import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public abstract class ExecuteAsRootBase {
 
@@ -100,4 +101,38 @@ public abstract class ExecuteAsRootBase {
     }
 
     protected abstract ArrayList<String> getCommandsToExecute();
+
+    public static boolean writeImage(final String from, final String to) {
+        ExecuteAsRootBase executor = new ExecuteAsRootBase() {
+            @Override
+            protected ArrayList<String> getCommandsToExecute() {
+                return new ArrayList<String>(Arrays.asList(
+                        "/system/bin/dd if=\"" + from + "\" of=\"" + to + "\""));
+            }
+        };
+
+        return executor.execute();
+    }
+
+    public static boolean reboot() {
+        ExecuteAsRootBase executor = new ExecuteAsRootBase() {
+            @Override
+            protected ArrayList<String> getCommandsToExecute() {
+                return new ArrayList<String>(Arrays.asList("/system/bin/reboot"));
+            }
+        };
+
+        return executor.execute();
+    }
+
+    public static boolean rebootRecovery() {
+        ExecuteAsRootBase executor = new ExecuteAsRootBase() {
+            @Override
+            protected ArrayList<String> getCommandsToExecute() {
+                return new ArrayList<String>(Arrays.asList("/system/bin/reboot recovery"));
+            }
+        };
+
+        return executor.execute();
+    }
 }
