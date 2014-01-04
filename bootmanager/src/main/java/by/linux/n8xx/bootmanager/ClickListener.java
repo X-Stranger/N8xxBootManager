@@ -6,6 +6,7 @@ import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Toast;
 
 public class ClickListener implements AdapterView.OnItemClickListener {
 
@@ -48,21 +49,51 @@ public class ClickListener implements AdapterView.OnItemClickListener {
         public void onClick(DialogInterface dialog, int whichButton) {
             SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(view.getContext());
             String dir = prefs.getString("images_path", "/mnt/extSdCard");
+            boolean result = false;
 
             if ("boot".equals(id)) {
-                if (ExecuteAsRootBase.writeImage(dir + "/" + image,
-                        prefs.getString("boot_partition", "/dev/block/mmcblk0p5"))) {
-                    ExecuteAsRootBase.reboot();
-                }
+                result = ExecuteAsRootBase.writeImage(dir + "/" + image,
+                        prefs.getString("boot_partition", "/dev/block/mmcblk0p5"));
             }
             if ("recovery".equals(id)) {
-                if (ExecuteAsRootBase.writeImage(dir + "/" + image,
-                        prefs.getString("recovery_partition", "/dev/block/mmcblk0p6"))) {
-                    ExecuteAsRootBase.rebootRecovery();
-                }
+                result = ExecuteAsRootBase.writeImage(dir + "/" + image,
+                        prefs.getString("recovery_partition", "/dev/block/mmcblk0p6"));
             }
 
             dialog.dismiss();
+
+            if (result) {
+                Toast.makeText(view.getContext(),
+                        "The image was successfully written", Toast.LENGTH_SHORT).show();
+
+                AlertDialog.Builder alert = new AlertDialog.Builder(view.getContext());
+                alert.setTitle("Reboot?");
+                alert.setMessage("We now can try booting " + id + " partition");
+
+                alert.setPositiveButton("GO!", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int whichButton) {
+                        dialog.dismiss();
+                        if ("boot".equals(id)) {
+                            ExecuteAsRootBase.reboot();
+                        }
+                        if ("recovery".equals(id)) {
+                            ExecuteAsRootBase.rebootRecovery();
+                        }
+                    }
+                });
+
+                alert.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int whichButton) {
+                        dialog.cancel();
+                    }
+                });
+
+                alert.show();
+            } else {
+                Toast.makeText(view.getContext(), "ERROR! The image writing has been failed.\n"
+                        + "Please check file size and permissions, superuser access, etc.",
+                        Toast.LENGTH_LONG).show();
+            }
         }
     }
 }
