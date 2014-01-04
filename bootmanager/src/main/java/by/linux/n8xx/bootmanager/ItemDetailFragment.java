@@ -88,18 +88,13 @@ public class ItemDetailFragment extends Fragment {
             }
         }
 
-        ArrayAdapter adapter = new ArrayAdapter<String>(
+        final ArrayAdapter<String> adapter = new ArrayAdapter<String>(
                 rootView.getContext(), android.R.layout.simple_list_item_1, images);
         ((ListView) rootView.findViewById(R.id.item_detail)).setAdapter(adapter);
-        ((ListView) rootView.findViewById(R.id.item_detail)).setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        ((ListView) rootView.findViewById(R.id.item_detail)).setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onItemSelected(AdapterView<?> adapterView, View view, int position, long id) {
-                System.out.println(adapter.getItem(position));
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> adapterView) {
-                // do nothing
+            public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
+                Toast.makeText(view.getContext(), adapter.getItem(position), Toast.LENGTH_SHORT).show();
             }
         });
 
