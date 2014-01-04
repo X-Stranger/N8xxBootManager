@@ -2,28 +2,28 @@
         xmlns:android="http://schemas.android.com/apk/res/android">
 
     <PreferenceCategory
-            android:title="@string/options">
+            android:title="Options">
 
         <by.linux.n8xx.bootmanager.EditTextPreference
             android:key="boot_partition"
-            android:title="@string/title_normal_boot_partition"
-            android:summary="@string/summary_normal_boot_partition"
-            android:dialogTitle="@string/dialog_title_normal_boot_partition"
-            android:defaultValue="@string/summary_normal_boot_partition"/>
+            android:title="Normal boot partition"
+            android:summary="/dev/block/mmcblk0p5"
+            android:dialogTitle="Please type the normal boot partition path:"
+            android:defaultValue="/dev/block/mmcblk0p5"/>
 
         <by.linux.n8xx.bootmanager.EditTextPreference
             android:key="recovery_partition"
-            android:title="@string/title_recovery_boot_partition"
-            android:summary="@string/summary_recovery_boot_partition"
-            android:dialogTitle="@string/dialog_title_recovery_boot_partition"
-            android:defaultValue="@string/summary_recovery_boot_partition"/>
+            android:title="Recovery boot partition"
+            android:summary="/dev/block/mmcblk0p6"
+            android:dialogTitle="Please type the recovery partition path:"
+            android:defaultValue="/dev/block/mmcblk0p6"/>
 
         <by.linux.n8xx.bootmanager.EditTextPreference
             android:key="images_path"
-            android:title="@string/title_images_path"
-            android:summary="@string/summary_images_path"
-            android:dialogTitle="@string/dialog_title_images_path"
-            android:defaultValue="@string/summary_images_path"/>
+            android:title="Boot partition images folder"
+            android:summary="/mnt/extSdCard"
+            android:dialogTitle="Please type the path to images folder:"
+            android:defaultValue="/mnt/extSdCard"/>
 
         <Preference
             android:layout="@layout/check_root_button"/>

@@ -22,9 +22,9 @@ public class ItemList {
     public static Map<String, Item> ITEM_MAP = new HashMap<String, Item>();
 
     static {
-        addItem(new Item("boot", ItemListActivity.getAppContext().getString(R.string.normal_boot)));
-        addItem(new Item("recovery", ItemListActivity.getAppContext().getString(R.string.recovery_boot)));
-        addItem(new Item("settings", ItemListActivity.getAppContext().getString(R.string.settings)));
+        addItem(new Item("boot", "Normal Boot"));
+        addItem(new Item("recovery", "Recovery Boot"));
+        addItem(new Item("settings", "Settings"));
     }
 
     private static void addItem(Item item) {
