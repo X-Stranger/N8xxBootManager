@@ -63,16 +63,15 @@ public class ItemDetailFragment extends Fragment {
         if (id != null) {
             SharedPreferences prefs =
                     PreferenceManager.getDefaultSharedPreferences(rootView.getContext());
-            Toast.makeText(rootView.getContext(), "Looking for " + id + "*.img files at "
-                    + prefs.getString("images_path", "/mnt/extSdCard"), Toast.LENGTH_SHORT).show();
+            Toast.makeText(rootView.getContext(), "Looking for *.img files at "
+                    + prefs.getString("images_path", "/mnt/extSdCard") + "/" + id, Toast.LENGTH_SHORT).show();
 
-            File dir = new File(prefs.getString("images_path", "/mnt/extSdCard"));
+            File dir = new File(prefs.getString("images_path", "/mnt/extSdCard") + "/" + id);
             if (dir.exists() && dir.isDirectory()) {
                 FilenameFilter filter = new FilenameFilter() {
                     @Override
                     public boolean accept(File dir, String name) {
-                        String lower = name.toLowerCase();
-                        return (lower.startsWith(id) && lower.endsWith(".img"));
+                        return name.toLowerCase().endsWith(".img");
                     }
                 };
                 File[] files = dir.listFiles(filter);

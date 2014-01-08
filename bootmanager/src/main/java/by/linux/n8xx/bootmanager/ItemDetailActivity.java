@@ -2,6 +2,7 @@ package by.linux.n8xx.bootmanager;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.NavUtils;
 import android.view.MenuItem;
@@ -35,12 +36,17 @@ public class ItemDetailActivity extends FragmentActivity {
         // http://developer.android.com/guide/components/fragments.html
         //
         if (savedInstanceState == null) {
+            String id = getIntent().getStringExtra(ItemDetailFragment.ARG_ITEM_ID);
             // Create the detail fragment and add it to the activity
             // using a fragment transaction.
             Bundle arguments = new Bundle();
-            arguments.putString(ItemDetailFragment.ARG_ITEM_ID,
-                    getIntent().getStringExtra(ItemDetailFragment.ARG_ITEM_ID));
-            ItemDetailFragment fragment = new ItemDetailFragment();
+            arguments.putString(ItemDetailFragment.ARG_ITEM_ID, id);
+            Fragment fragment;
+            if("settings".equals(id)) {
+                fragment = new PrefsFragment();
+            } else {
+                fragment = new ItemDetailFragment();
+            }
             fragment.setArguments(arguments);
             getSupportFragmentManager().beginTransaction()
                     .add(R.id.item_detail_container, fragment)
