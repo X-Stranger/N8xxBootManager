@@ -28,6 +28,9 @@
         <Preference
             android:layout="@layout/check_root_button"/>
 
+        <Preference
+            android:layout="@layout/about"/>
+
     </PreferenceCategory>
 
 </PreferenceScreen>
