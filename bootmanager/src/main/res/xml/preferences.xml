@@ -21,9 +21,9 @@
         <by.linux.n8xx.bootmanager.EditTextPreference
             android:key="images_path"
             android:title="Boot partition images folder"
-            android:summary="/mnt/extSdCard"
+            android:summary="/mnt/extSdCard/images"
             android:dialogTitle="Please type the path to images folder:"
-            android:defaultValue="/mnt/extSdCard"/>
+            android:defaultValue="/mnt/extSdCard/images"/>
 
         <Preference
             android:layout="@layout/check_root_button"/>

@@ -48,7 +48,7 @@ public class ClickListener implements AdapterView.OnItemClickListener {
         @Override
         public void onClick(DialogInterface dialog, int whichButton) {
             SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(view.getContext());
-            String dir = prefs.getString("images_path", "/mnt/extSdCard");
+            String dir = prefs.getString("images_path", "/mnt/extSdCard") + "/" + id;
             boolean result = false;
 
             if ("boot".equals(id)) {

@@ -78,11 +78,11 @@ public abstract class ExecuteAsRootBase {
 
                 try {
                     int suProcessRetval = suProcess.waitFor();
-                    if (255 != suProcessRetval) {
-                        // Root access granted
+                    if (suProcessRetval == 0) {
+                        // Root access granted and commands executed
                         retval = true;
                     } else {
-                        // Root access denied
+                        // Root access denied or commands execution failed
                         retval = false;
                     }
                 } catch (Exception ex) {

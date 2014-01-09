@@ -22,10 +22,23 @@ android {
         versionCode 1
         versionName "1.0"
     }
+
+    signingConfigs {
+        release {
+            storeFile file("/home/Work/.ssh/keystore.ks")
+            storePassword "importkey"
+            keyAlias "xstranger"
+            keyPassword "importkey"
+        }
+    }
+
     buildTypes {
         release {
-            runProguard false
+            debuggable false
+            jniDebugBuild false
+            runProguard true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
+            signingConfig signingConfigs.release
         }
     }
 }
