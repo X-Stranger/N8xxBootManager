@@ -29,6 +29,9 @@
             android:layout="@layout/check_root_button"/>
 
         <Preference
+            android:layout="@layout/backup_buttons"/>
+
+        <Preference
             android:layout="@layout/about"/>
 
     </PreferenceCategory>

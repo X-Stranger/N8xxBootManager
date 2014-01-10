@@ -64,9 +64,9 @@ public class ItemDetailFragment extends Fragment {
             SharedPreferences prefs =
                     PreferenceManager.getDefaultSharedPreferences(rootView.getContext());
             Toast.makeText(rootView.getContext(), "Looking for *.img files at "
-                    + prefs.getString("images_path", "/mnt/extSdCard") + "/" + id, Toast.LENGTH_SHORT).show();
+                    + prefs.getString("images_path", "/mnt/extSdCard/images") + "/" + id, Toast.LENGTH_SHORT).show();
 
-            File dir = new File(prefs.getString("images_path", "/mnt/extSdCard") + "/" + id);
+            File dir = new File(prefs.getString("images_path", "/mnt/extSdCard/images") + "/" + id);
             if (dir.exists() && dir.isDirectory()) {
                 FilenameFilter filter = new FilenameFilter() {
                     @Override
