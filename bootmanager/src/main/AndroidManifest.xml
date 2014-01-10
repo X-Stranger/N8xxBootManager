@@ -7,11 +7,11 @@
     <application
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
-        android:label="N8xx Boot Manager"
+        android:label="N80xx Boot Manager"
         android:theme="@android:style/Theme.Holo" >
         <activity
             android:name="by.linux.n8xx.bootmanager.ItemListActivity"
-            android:label="N8xx Boot Manager" >
+            android:label="N80xx Boot Manager" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -20,7 +20,7 @@
         </activity>
         <activity
             android:name="by.linux.n8xx.bootmanager.ItemDetailActivity"
-            android:label="N8xx Boot Manager"
+            android:label="N80xx Boot Manager"
             android:parentActivityName="by.linux.n8xx.bootmanager.ItemListActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
